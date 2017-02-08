@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
   calendarControls: {
     flexDirection: 'row',
     justifyContent:'center',
-    alignItems:'center'
+    alignItems:'center',
+    paddingVertical:10
   },
   controlLeftButton: {
     alignItems : 'flex-end',
@@ -126,7 +127,7 @@ const styles = StyleSheet.create({
   },
   viewLoanDate:{
     flexDirection:'row',
-    paddingVertical:10
+    paddingBottom:10
   },
   viewLoanFromDate:{
     flex:1,
