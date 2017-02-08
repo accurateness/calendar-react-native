@@ -61,14 +61,15 @@ const styles = StyleSheet.create({
   },
   dayButton: {
     alignItems: 'center',
+    justifyContent: 'center',
     width: DEVICE_WIDTH / 7,
-    paddingVertical : 5
+    height: DEVICE_WIDTH / 7,
   },
   dayButtonEvent: {
     alignItems: 'center',
+    justifyContent: 'center',
     width: DEVICE_WIDTH / 7,
     backgroundColor: '#FFD90C',
-    paddingVertical : 5
   },
   dayButtonFiller: {
     width: DEVICE_WIDTH / 7,
