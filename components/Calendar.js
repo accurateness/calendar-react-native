@@ -266,6 +266,7 @@ export default class Calendar extends Component {
 
   renderLoanDate(){
     const { fromDate, toDate } = this.props
+    if(!fromDate) return;
     return(
       <View style={styles.viewLoanDate}>
           <View style={styles.viewLoanFromDate}>
@@ -273,7 +274,7 @@ export default class Calendar extends Component {
             <Text style={styles.txtLoanDate}>{fromDate.day}</Text>
           </View>
           <View style={styles.viewLoanCenterDate}>
-            <Image source={require('../img/slash.png')} style={{width:50,height:50}} />
+            <Image source={require('../img/slash.png')} style={styles.iconSlash} />
           </View>
           <View style={styles.viewLoanToDate}>
             <Text style={styles.txtLoanDate}>{toDate.date}</Text>
