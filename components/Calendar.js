@@ -98,12 +98,11 @@ export default class Calendar extends Component {
  prepareEventDates( events) {
     const parsedDates = {};
 
-
     // Dates with custom properties
     if (events) {
       events.forEach(event => {
-        if (event.date) {
-            const date = moment(event.date);
+        if (event) {
+            const date = moment(event);
             const month = moment(date).startOf('month').format();
             parsedDates[month] = parsedDates[month] || {};
             parsedDates[month][date.date() - 1] = event;
@@ -118,8 +117,8 @@ export default class Calendar extends Component {
     // Dates with custom properties
     if (inActiveDays) {
       inActiveDays.forEach(event => {
-        if (event.date) {
-            const date = moment(event.date);
+        if (event) {
+            const date = moment(event);
             const month = moment(date).startOf('month').format();
             parsedDates[month] = parsedDates[month] || {};
             parsedDates[month][date.date() - 1] = event;
