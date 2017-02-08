@@ -69,7 +69,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: DEVICE_WIDTH / 7,
-    backgroundColor: '#FFD90C',
+    height: DEVICE_WIDTH / 7,
+    backgroundColor: '#FFD90C', 
   },
   dayButtonFiller: {
     width: DEVICE_WIDTH / 7,
