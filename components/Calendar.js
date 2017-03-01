@@ -161,7 +161,7 @@ export default class Calendar extends Component {
 
     if(countMonth < 5){
       const newMoment = moment(this.state.currentMonthMoment).add(1, 'month');
-      this.setState({ currentMonthMoment: newMoment, tintColorNext: (countMonth == 3)?'ccc':'black', tintColorPrev: 'black' });
+      this.setState({ currentMonthMoment: newMoment, tintColorNext: (countMonth == 4)?'#ccc':'black', tintColorPrev: 'black' });
       this.props.onTouchNext && this.props.onTouchNext(newMoment);
     }else{
       this.setState({ tintColorNext:'#ccc' })
