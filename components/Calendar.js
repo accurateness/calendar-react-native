@@ -21,7 +21,7 @@ export default class Calendar extends Component {
   state = {
     currentMonthMoment: moment(this.props.startDate),
     selectedMoment: moment(this.props.selectedDate),
-    tintColorPrev: 'black',
+    tintColorPrev: '#ccc',
     tintColorNext: 'black',
   };
 
@@ -152,8 +152,8 @@ export default class Calendar extends Component {
 
   onNext = () => {
     const { currentMonthMoment } = this.state
-    const currentMonthCalendar = moment(currentMonthMoment).format('MM YYYY')
-    const currentMonth = moment().format('MM YYYY')
+    const currentMonthCalendar = moment(currentMonthMoment)
+    const currentMonth = moment()
 
     const countMonth = currentMonthCalendar.diff(currentMonth, 'month');
 
