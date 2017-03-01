@@ -137,13 +137,15 @@ export default class Calendar extends Component {
 
   onPrev = () => {
     const { currentMonthMoment } = this.state
-    const currentMonthCalendar = moment(currentMonthMoment).format('MM')
-    const currentMonth = moment().format('MM')
+    const currentMonthCalendar = moment(currentMonthMoment)
+    const currentMonth = moment()
 
-    if(currentMonthCalendar != currentMonth){
+    const countMonth = currentMonthCalendar.diff(currentMonth, 'month');
+
+    if(countMonth > 0){
       const newMoment = moment(currentMonthMoment).subtract(1, 'month');
 
-      this.setState({ currentMonthMoment: newMoment, tintColorNext: 'black', tintColorNext: '#ccc' });
+      this.setState({ currentMonthMoment: newMoment, tintColorNext: 'black', tintColorPrev: (countMonth == 1)?'ccc':'black' });
       this.props.onTouchPrev && this.props.onTouchPrev(newMoment);
     }else{
       this.setState({ tintColorPrev:'#ccc' })
@@ -159,7 +161,7 @@ export default class Calendar extends Component {
 
     if(countMonth < 5){
       const newMoment = moment(this.state.currentMonthMoment).add(1, 'month');
-      this.setState({ currentMonthMoment: newMoment, tintColorNext: 'black', tintColorNext: '#ccc' });
+      this.setState({ currentMonthMoment: newMoment, tintColorNext: (countMonth == 4)?'ccc':'black', tintColorPrev: 'black' });
       this.props.onTouchNext && this.props.onTouchNext(newMoment);
     }else{
       this.setState({ tintColorNext:'#ccc' })
