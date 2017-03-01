@@ -142,8 +142,7 @@ export default class Calendar extends Component {
 
     const countMonth = currentMonthCalendar.diff(currentMonth, 'month')+1;
     
-    if(countMonth > 0){
-      alert(countMonth)
+    if(currentMonthCalendar.format('MM') != currentMonth.format('MM')){
       const newMoment = moment(currentMonthMoment).subtract(1, 'month');
 
       this.setState({ currentMonthMoment: newMoment, tintColorNext: 'black', tintColorPrev: (countMonth == 2)?'ccc':'black' });
