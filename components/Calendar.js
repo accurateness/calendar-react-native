@@ -21,6 +21,8 @@ export default class Calendar extends Component {
   state = {
     currentMonthMoment: moment(this.props.startDate),
     selectedMoment: moment(this.props.selectedDate),
+    tintColorPrev: 'black',
+    tintColorNext: 'black',
   };
 
   static propTypes = {
@@ -134,15 +136,34 @@ export default class Calendar extends Component {
   }
 
   onPrev = () => {
-    const newMoment = moment(this.state.currentMonthMoment).subtract(1, 'month');
-    this.setState({ currentMonthMoment: newMoment });
-    this.props.onTouchPrev && this.props.onTouchPrev(newMoment);
+    const { currentMonthMoment } = this.state
+    const currentMonthCalendar = moment(currentMonthMoment).format('MM')
+    const currentMonth = moment().format('MM')
+
+    if(currentMonthCalendar != currentMonth){
+      const newMoment = moment(currentMonthMoment).subtract(1, 'month');
+
+      this.setState({ currentMonthMoment: newMoment, tintColorPrev: 'black' });
+      this.props.onTouchPrev && this.props.onTouchPrev(newMoment);
+    }else{
+      this.setState({ tintColorPrev:'#ccc' })
+    }
   }
 
   onNext = () => {
-    const newMoment = moment(this.state.currentMonthMoment).add(1, 'month');
-    this.setState({ currentMonthMoment: newMoment });
-    this.props.onTouchNext && this.props.onTouchNext(newMoment);
+    const { currentMonthMoment } = this.state
+    const currentMonthCalendar = moment(currentMonthMoment).format('MM YYYY')
+    const currentMonth = moment().format('MM YYYY')
+
+    const countMonth = currentMonthCalendar.diff(currentMonth, 'month');
+
+    if(countMonth < 6){
+      const newMoment = moment(this.state.currentMonthMoment).add(1, 'month');
+      this.setState({ currentMonthMoment: newMoment, tintColorNext: 'black' });
+      this.props.onTouchNext && this.props.onTouchNext(newMoment);
+    }else{
+      this.setState({ tintColorNext:'#ccc' })
+    }
   }
 
   scrollToItem(itemIndex) {
@@ -293,7 +314,7 @@ export default class Calendar extends Component {
             style={[styles.controlLeftButton, this.props.customStyle.controlButton]}
             onPress={this.onPrev}
           >
-            <Image source={require('../img/prev.png')} style={styles.icon} />
+            <Image source={require('../img/prev.png')} style={[styles.icon,{tintColor: this.state.tintColorPrev}]} />
             
           </TouchableOpacity>
           <View style={styles.headerCenter}>
@@ -306,7 +327,7 @@ export default class Calendar extends Component {
             onPress={this.onNext}
           >
             
-            <Image source={require('../img/next.png')} style={styles.icon} />
+            <Image source={require('../img/next.png')} style={[styles.icon{tintColor: this.state.tintColorNext}]} />
           </TouchableOpacity>
         </View>
       )
