@@ -327,7 +327,7 @@ export default class Calendar extends Component {
             onPress={this.onNext}
           >
             
-            <Image source={require('../img/next.png')} style={[styles.icon{tintColor: this.state.tintColorNext}]} />
+            <Image source={require('../img/next.png')} style={[styles.icon,{tintColor: this.state.tintColorNext}]} />
           </TouchableOpacity>
         </View>
       )
