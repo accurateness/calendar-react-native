@@ -356,15 +356,17 @@ export default class Calendar extends Component {
     const currentPage = position / this.props.width;
     const currentMonthCalendar = moment(currentMonthMoment)
     const currentMonth = moment()
+    let isScrollEnabled = scrollEnabled
 
     if (currentPage < VIEW_INDEX) {
       currentMonth = currentMonth+1
       if(currentMonthCalendar.format('MM') == currentMonth.format('MM')){
-        scrollEnabled = false
+        isScrollEnabled = false
       }
     } else if (currentPage > VIEW_INDEX) {
+      const countMonth = currentMonthCalendar.diff(currentMonth, 'month');
       if(countMonth > 4){
-        scrollEnabled = false
+        isScrollEnabled = false
       }
     }
 
@@ -373,7 +375,7 @@ export default class Calendar extends Component {
         {this.renderTopBar()}
         {this.renderLoanDate()}
         {this.renderHeading(this.props.titleFormat)}
-        {this.props.scrollEnabled ?
+        {isScrollEnabled ?
           <ScrollView
             ref={calendar => this._calendar = calendar}
             horizontal
