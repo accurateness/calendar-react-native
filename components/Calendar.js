@@ -178,13 +178,16 @@ export default class Calendar extends Component {
   scrollEnded(event) {
     const position = event.nativeEvent.contentOffset.x;
     const currentPage = position / this.props.width;
+
     const newMoment = moment(this.state.currentMonthMoment).add(currentPage - VIEW_INDEX, 'month');
     this.setState({ currentMonthMoment: newMoment });
 
     if (currentPage < VIEW_INDEX) {
-      this.props.onSwipePrev && this.props.onSwipePrev(newMoment);
+      this.onPrev()
+      //this.props.onSwipePrev && this.props.onSwipePrev(newMoment);
     } else if (currentPage > VIEW_INDEX) {
-      this.props.onSwipeNext && this.props.onSwipeNext(newMoment);
+      this.onNext()
+      //this.props.onSwipeNext && this.props.onSwipeNext(newMoment);
     }
   }
 
