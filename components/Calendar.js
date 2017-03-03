@@ -352,22 +352,13 @@ export default class Calendar extends Component {
     const { scrollEnabled } = this.props
     const { currentMonthMoment } = this.state
 
-    const position = event.nativeEvent.contentOffset.x;
-    const currentPage = position / this.props.width;
     const currentMonthCalendar = moment(currentMonthMoment)
     let currentMonth = moment()
     let isScrollEnabled = scrollEnabled
 
-    if (currentPage < VIEW_INDEX) {
-      currentMonth = currentMonth + 1
-      if(currentMonthCalendar.format('MM') == currentMonth.format('MM')){
-        isScrollEnabled = false
-      }
-    } else if (currentPage > VIEW_INDEX) {
-      const countMonth = currentMonthCalendar.diff(currentMonth, 'month');
-      if(countMonth > 4){
-        isScrollEnabled = false
-      }
+    const countMonth = currentMonthCalendar.diff(currentMonth, 'month');
+    if(currentMonthCalendar.format('MM') == currentMonth.add(1,'month').format('MM') && countMonth > 4){
+      isScrollEnabled = false
     }
 
     return (
