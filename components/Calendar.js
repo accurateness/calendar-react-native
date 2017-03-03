@@ -180,7 +180,7 @@ export default class Calendar extends Component {
     const currentPage = position / this.props.width;
 
     const newMoment = moment(this.state.currentMonthMoment).add(currentPage - VIEW_INDEX, 'month');
-    this.setState({ currentMonthMoment: newMoment });
+    //this.setState({ currentMonthMoment: newMoment });
 
     if (currentPage < VIEW_INDEX) {
       this.onPrev()
