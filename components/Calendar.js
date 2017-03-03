@@ -349,6 +349,24 @@ export default class Calendar extends Component {
     const calendarDates = this.getMonthStack(this.state.currentMonthMoment);
     const eventDatesMap = this.prepareEventDates(this.props.events);
     const inActiveDatesMap = this.prepareInActiveDates(this.props.dayInActive);
+    const { scrollEnabled } = this.props
+    const { currentMonthMoment } = this.state
+
+    const position = event.nativeEvent.contentOffset.x;
+    const currentPage = position / this.props.width;
+    const currentMonthCalendar = moment(currentMonthMoment)
+    const currentMonth = moment()
+
+    if (currentPage < VIEW_INDEX) {
+      currentMonth = currentMonth+1
+      if(currentMonthCalendar.format('MM') == currentMonth.format('MM')){
+        scrollEnabled = false
+      }
+    } else if (currentPage > VIEW_INDEX) {
+      if(countMonth > 4){
+        scrollEnabled = false
+      }
+    }
 
     return (
       <View style={[styles.calendarContainer, this.props.customStyle.calendarContainer]}>
